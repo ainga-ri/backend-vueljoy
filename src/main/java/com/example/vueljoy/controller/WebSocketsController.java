@@ -22,15 +22,8 @@ public class WebSocketsController {
 
     private final UserService userService;
 
-    @MessageMapping("/hello")
-    @SendTo("/topic/greetings")
-    public Greeting greeting(HelloMessage message) throws Exception {
-        Thread.sleep(3000); // simulated delay
-        return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-    }
-
     @MessageMapping("/register")
-    @SendTo("/topic/greetings")
+    @SendTo("/topic/broadcast")
     public Register register(UserDTO userDTO) throws Exception {
         Thread.sleep(1000); // simulated delay
         return new Register(userService.registerUser(userDTO));
@@ -42,14 +35,20 @@ public class WebSocketsController {
     public Register welcome(UserDTO userDTO) throws Exception {
         Thread.sleep(1000); // simulated delay
         return new Register(userService.welcomeUser(userDTO));
-        //return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.get) + "!");
+
     }
 
     @MessageMapping("/submit-answer")
-    @SendTo("/topic/greetings")
+    @SendTo("/topic/broadcast")
     public Register submitAnswer(PlayerDTO playerDTO) throws Exception {
 
         return new Register(userService.submitAnswer(playerDTO));
+        //return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.get) + "!");
+    }
+
+    @SendTo("/topic/broadcast")
+    public String question() {
+        return "holaaaaaaaaa";
         //return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.get) + "!");
     }
 }

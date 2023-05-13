@@ -16,11 +16,11 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
     private String seat;
+    private int score;
 
-    public Player(String name, String seat) {
-        this.name = name;
+    public Player(String seat, int score) {
         this.seat = seat;
+        this.score = score;
     }
 }
