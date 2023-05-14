@@ -10,11 +10,7 @@ public class VueljoyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(VueljoyApplication.class, args);
 	}
-
 	@Bean
-	public int questionNo()
-	{
-		return 0;
-	}
+	public int questionNo() {return 1;}
 
 }
